@@ -106,7 +106,7 @@ header nav ul li {
 .hero {
     height: 800px;
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 25px;
     background-image: url("../images/digital-marketing-meeting.jpg");
     background-size: cover;
     background-position: center;
@@ -118,9 +118,8 @@ main {
     width: 75%;
     display: inline-block;
     margin-left: 20px;
-    padding-right: 20px;
-    margin-top:20px;
 }
+
 
 /* SERVICES SECTIONS */
 
@@ -148,12 +147,9 @@ main {
     margin-right: 20px;
     padding: 20px;
     clear: both;
-    margin-top:20px;
-    position:absolute; /* I am only using absolute because I always wanted an answer to abolute positioning and column height. */
-    height:auto;
-    display:inline-block;
+    float: right;
     width: 20%;
-    height: 940px; /* this is not ideal. How do you extend an absolutely-positioned column? */
+    height: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: #2589bd;
 }
