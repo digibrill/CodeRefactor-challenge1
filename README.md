@@ -8,7 +8,7 @@ The following image shows the web application's appearance and functionality:
 
 ## My links
 
-Link to my GitHub:
-Link to GitHub page: 
+Link to my GitHub: https://digibrill.github.io/localEducRepo/
+Link to GitHub page: https://digibrill.github.io/localEducRepo/week1challenge/
 ---
 © 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
