@@ -10,8 +10,8 @@ The following image shows the web application's appearance and functionality:
 
 Link to my GitHub:
 https://digibrill.github.io/localEducRepo/
+
 Link to GitHub Challenge #1 page:
 https://digibrill.github.io/localEducRepo/week1challenge/
 ---
 © 2022 An Unassociated Press Publication
-Test!
