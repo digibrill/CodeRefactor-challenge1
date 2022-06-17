@@ -5,22 +5,63 @@
 
 /* global fonts */
 
-a, p, h1, h2{
+a, p, h1, h2, h3, h4{
     font-family: "Open Sans", sans-serif;
-    color: #C0D9F1;
 }
 
 /* Start main styles */
 
 header{
     width: 100%;
+    max-width: 1024px;
     background-color: #333;
     display: flex;
+    flex-wrap: nowrap;
+    align-content:flex-end;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+#logobox{
+    width: 60%;
+}
+
+#logobox img{
+    float:left;
+}
+
+#logobox h1{
+    font-weight: normal;
+    font-size: 20px;
+    margin-bottom: 0;
+    vertical-align: middle;
+    width: 50%;
+    display: inline-block;
+    margin-top: 20px;
+    color: #fff;
+}
+
+#logobox h2{
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 20px;
+    vertical-align: middle;
+    width: 50%;
+    display: inline-block;
+    color: #fff;
 }
 
 /*Top nav bar */
-#topnav ul{
+#topnav{
+    padding: 3px 10px 0;
+    display: flex;
     align-content: flex-end;
+    width: 40%;
+}
+
+#topnav ul{
+    margin-top: 30px;
+    width: 100%;
 }
 
 #topnav ul li{
@@ -28,47 +69,107 @@ header{
 }
 
 #topnav ul li a{
-    color: #C0D9F1;
+    color: #fff;
 }
 
 #hero{
     background-color: #000;
     width: 100%;
-    text-align:left;
+    text-align: left;
     display: flex;
 }
 
 #main{
+    display: block;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.pagestripes{
     display: flex;
-    flex-flow: row wrap;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.pagestripes:nth-of-type(1){
+    background-color: #fff;
+    border: 1px solid #247976;
+    color: #fff;
+}
+
+.pagestripes:nth-of-type(3){
+    background-color: #C0D9F1;
+    color: #fff;
+}
+
+.pagestripes:nth-of-type(2){
+    background-color: #333;
+    color: #fff;
 }
 
 .stripesheader {
-    width: 20%;
+    width: 15%;
     padding: 20px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
-.stripesheader h2{
+.stripesheader h3{
     font-size: 24px;
     padding: 20px;
 }
 
-.stripesbody{
-    display: flex;
-    width: 75%;
-    padding: 20px;
+.pagestripes:nth-of-type(1) h3, .pagestripes:nth-of-type(3) h3{
+    color: #333;
+}
 
+.stripesbody{
+    width: 80%;
+    padding: 20px;
+}
+
+.pagestripes:nth-of-type(1) p{
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.pagestripes:nth-of-type(2) h4{
+    width: 90%;
+    display: block;
+    margin-bottom: 20px;
+    color: #C0D9F1;
+    border: 1px dotted #fff;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 /* bottom nav bar */
 #bottomnav ul{
     float: right;
+    margin-top:35px;
 }
 
 #bottomnav ul li{
     display: inline-block;
 }
 
-#bottomnav ul li a{
-    color: #C0D9F1;
+#bottomnav ul li, #bottomnav ul li a{
+    color: #333;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+}
+
+footer{
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+footer p{
+    text-align:center;
+    color: #333;
 }
