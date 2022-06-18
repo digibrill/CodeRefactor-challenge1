@@ -172,6 +172,61 @@ header{
     margin-bottom: 20px;
 }
 
+#main h4{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:15pt;
+    color:#C0D9F1;
+    text-align:center;
+    width:100%;
+    border:1px solid #fff;
+    margin:30px auto 0;
+    padding:5px 7px 5px 7px;
+}
+
+.clearg{
+    clear:both;
+}
+
+h4.clearg:hover{
+    color:#333;
+    background-color: #fff;
+    cursor:pointer;
+}
+
+.portfoliosection{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:10pt;
+    background-color:#333;
+    border:1px solid #fff;
+    color:#fff;
+    clear:both;
+    width:100%;
+    margin:0 auto 30px;
+    padding:5px 7px 5px 7px;
+    text-align:center;
+    display:none;
+}
+.portfoliosection h4{
+    font-size:13pt;
+    color:#C0D9F1;
+    text-align:left;
+    padding-top:25px;
+}
+.portfoliosection h5{
+    font-size:11pt;
+    color:#C0D9F1;
+    text-align:left;
+}
+.portfoliosection a{
+    color:#fff;
+}
+.portfoliosection img{
+    margin-right:10px;
+    margin-top:10px;
+    vertical-align:top;
+}
+
+
 /* bottom nav bar */
 #bottomnav ul{
     float: right;
@@ -185,7 +240,6 @@ header{
 
 #bottomnav ul li, #bottomnav ul li a{
     color: #fff;
-    font-weight: bold;
     font-family: "Open Sans", sans-serif;
 }
 

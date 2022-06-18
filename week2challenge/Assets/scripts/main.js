@@ -7,18 +7,26 @@ $('button').click(function() {
 })*/
 document.addEventListener( 'DOMContentLoaded', () =>{
 
-    document.querySelectorAll('h2.clearg').forEach(h2 => {
+    document.querySelectorAll('h4.clearg').forEach(h4 => {
         
-        h2.addEventListener('click', () => {
+        h4.addEventListener('click', () => {
 
-            if(h2.nextElementSibling.style.display === 'block'){
-                h2.nextElementSibling.style.display = 'none';
+            if(h4.nextElementSibling.style.display === 'block'){
+
+                h4.nextElementSibling.style.display = 'none';
+
             }else{
+
                 let divs = document.querySelectorAll('div.portfoliosection');
+
                 for( let i=0; i < divs.length; i++ ){
+
                     divs[i].style.display = 'none';
+
                 }
-                h2.nextElementSibling.style.display = 'block';
+
+                h4.nextElementSibling.style.display = 'block';
+                
             }
 
         })
