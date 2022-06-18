@@ -84,6 +84,7 @@ header{
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
+    display: flex;
 }
 
 .pagestripes{
@@ -110,6 +111,8 @@ header{
     padding-top: 0;
     padding-bottom: 0;
     height: 75px;
+    display: flexbox;
+    flex: content;
 }
 
 .pagestripes:nth-of-type(3) .stripesbody{
