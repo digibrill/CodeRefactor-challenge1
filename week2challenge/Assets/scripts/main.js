@@ -11,7 +11,7 @@ document.addEventListener( 'DOMContentLoaded', () =>{
         
         h4.addEventListener('click', () => {
 
-            if(h4.nextElementSibling.style.display === 'block'){
+            if(h4.nextElementSibling.style.display === 'flex'){
 
                 h4.nextElementSibling.style.display = 'none';
 
@@ -25,7 +25,7 @@ document.addEventListener( 'DOMContentLoaded', () =>{
 
                 }
 
-                h4.nextElementSibling.style.display = 'block';
+                h4.nextElementSibling.style.display = 'flex';
                 
             }
 
