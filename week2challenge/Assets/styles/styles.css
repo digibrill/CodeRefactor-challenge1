@@ -1,6 +1,7 @@
-/* Resets */
+/* Resets and variables*/
 
-* {  
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     --darkGrey: #333;
@@ -24,8 +25,6 @@ header {
     background-color: var(--darkGrey);
     display: flex;
     flex-wrap: nowrap;
-    align-content: flex-end;
-    flex-direction: row;
     margin: 0 auto;
 }
 
@@ -56,8 +55,6 @@ header {
 
 #topnav {
     padding: 3px 10px 0;
-    display: flex;
-    align-content: flex-end;
     width: 40%;
 }
 
@@ -94,13 +91,15 @@ header {
     display: flex;
 }
 
-/* First two striped content sections */
+/* Striped content sections */
 
 .pagestripes {
     display: flex;
     width: 100%;
     margin: 0 auto;
 }
+
+/* About Me stripe */
 
 .pagestripes:nth-of-type(1) {
     background-color: var(--white);
@@ -120,6 +119,8 @@ header {
     margin: var(--commonpx) 0 var(--commonpx);
     color: var(--darkGrey);
 }
+
+/* Work stripe */
 
 .pagestripes:nth-of-type(2) {
     background-color: #325078;
@@ -146,12 +147,11 @@ header {
     color: var(--white);
     clear: both;
     width: 100%;
-    margin: var(--commonpx) auto 30px;
+    margin: -20px auto 30px;
     padding: 5px 7px 5px 7px;
     text-align: center;
     display: none;
     flex-wrap: wrap;
-    flex-shrink: 1;
 }
 
 .portfoliosection h4 {
@@ -178,9 +178,12 @@ header {
     /*margin-right:10px;
     margin-top:10px;
     vertical-align:top;*/
+    flex-shrink: 1;
+    flex-basis: auto;
+    max-width: 1000px;
 }
 
-/* Third striped content section */
+/* Contact Me stripe */
 
 .pagestripes:nth-of-type(3) {
     color: var(--white);
