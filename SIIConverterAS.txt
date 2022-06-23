@@ -1,0 +1,119 @@
+ActionScript for SII Converter
+
+output_ta.wordWrap = true;
+var codeTable:Array = new Array(new Array('EP','\n\n'), new Array('PI:8A','\"'), new Array('PI:89','\"'), new Array('QL','\r'), new Array('QC','\r'));
+convert_btn.setStyle('themeColor','haloOrange');
+reset_btn.setStyle('themeColor','haloOrange');
+convert_btn.label = 'Convert Text';
+function stripper(){
+	var rawtext:String = input_ti.text;
+	var code:String = new String();
+	for(var i=0;i<rawtext.length;i++){
+		//trace(rawtext.charCodeAt(i));
+		//trace(String.fromCharCode(32));
+		if(rawtext.charAt(i) == '{'){
+			var startMark = i;
+			var excerpt = rawtext.substring(startMark+1,rawtext.length);
+			for(var j=0;j<excerpt.length;j++){
+				if(excerpt.charAt(j) == '}'){
+					var codeend = excerpt.charAt(j);
+					code = excerpt.substring(0,excerpt.indexOf(codeend));
+					if(code == 'STYL'){
+						var startSkip = excerpt.indexOf(codeend)+1;
+						if(charAt(startSkip)!='{'){
+							var skipText = excerpt.substring(startSkip+1,excerpt.length);
+							i+=skipText.indexOf('{')+1;
+							break;
+						}else{
+							var skipText = excerpt.substring(startSkip+8,excerpt.length);
+							i+=skipText.indexOf('{');
+							break;
+						}
+					}
+					for(var k=0;k<codeTable.length;k++){
+						if(code == codeTable[k][0]){
+							output_ta.text += codeTable[k][1];
+						}
+					}
+					break;
+				}
+			}
+			i += code.length+1;
+		}
+		else if(rawtext.indexOf('wrapbyline')==i){
+			i=i+10;
+		}
+		else if(rawtext.indexOf('bigcap')==i||rawtext.indexOf('wrapb,')==i){
+			i=i+6;
+		}
+		else if(rawtext.indexOf('byline ' + String.fromCharCode(18) + 'By')==i){
+			i=i+7;
+		}
+		else if(rawtext.indexOf('shirt ')==i && rawtext.charAt(i+6)==rawtext.charAt(i+6).toUpperCase()){
+			i=i+5;
+		}
+		else if((rawtext.indexOf('wrap' + String.fromCharCode(18) + 'b,')==i)||(rawtext.indexOf('wrap ' + String.fromCharCode(18) + 'b,')==i)||(rawtext.indexOf('wrap b,')==i)){
+			i=i+7;
+		}
+		else if(rawtext.indexOf('wrap ')==i && rawtext.charAt(i+4)==rawtext.charAt(i+4).toUpperCase()){
+			i=i+4;
+		}
+		else if((rawtext.charCodeAt(i)>47 && rawtext.charCodeAt(i)<58 && (rawtext.charAt(i+1)=='p'||rawtext.charAt(i+1)=='l'))||(rawtext.charCodeAt(i+1)>47 && rawtext.charCodeAt(i+1)<58 && (rawtext.charAt(i) == 'p'||rawtext.charAt(i)=='l'))){
+			i=i+2;
+		}
+		else if((rawtext.charCodeAt(i)>47 && rawtext.charCodeAt(i)<58 && rawtext.charCodeAt(i+1)>47 && rawtext.charCodeAt(i+1)<58 && (rawtext.charAt(i+2)=='p'||rawtext.charAt(i+2)=='l'))||(rawtext.charCodeAt(i+2)>47 && rawtext.charCodeAt(i+2)<58 && rawtext.charCodeAt(i+1)>47 && rawtext.charCodeAt(i+1)<58 && (rawtext.charAt(i) == 'p'||rawtext.charAt(i)=='l'))){
+			i=i+3;
+		}
+		else if(rawtext.charAt(i) == 'c' && rawtext.charAt(i+1) == 'q'){
+			i++;
+		}
+		else if(rawtext.indexOf('il,') == i){
+			i=i+3;
+		}
+		else if(rawtext.indexOf(' bc ')==i){
+			var commentstart = rawtext.substring(rawtext.indexOf(' bc '),rawtext.length);
+			for(var m=0;m<commentstart.length;m++){
+				if(commentstart.indexOf(' ec ') + 3 == m){
+					var commentend = commentstart.indexOf(' ec ') + 3;
+					comment = commentstart.substring(0,commentend);
+					break;
+				}
+			}
+			output_ta.text += ' ';
+			i=i+comment.length;
+		}
+		else if(rawtext.indexOf(' b ')==i || rawtext.indexOf(String.fromCharCode(13) + 'b ')==i){
+			output_ta.text += '\n';
+			i=i+2;
+		}
+		else if(rawtext.charAt(i) == String.fromCharCode(18)&&rawtext.charAt(i-1)!=rawtext.charAt(i-1).toUpperCase()){
+			output_ta.text += ' ';
+		}
+		else if(rawtext.charAt(i) == String.fromCharCode(129)||rawtext.charAt(i) == String.fromCharCode(208)){
+			output_ta.text += '';
+		}
+		else if(rawtext.charAt(i) == String.fromCharCode(8240)||rawtext.charAt(i) == String.fromCharCode(352)){
+			output_ta.text += '\"';
+		}
+		else if(rawtext.charAt(i) == String.fromCharCode(8230)){
+			output_ta.text += '-';
+		}
+		else if(rawtext.charAt(i) == String.fromCharCode(96)){
+			output_ta.text += '\'';
+		}
+		else if(rawtext.charAt(i) < String.fromCharCode(20)&&rawtext.charAt(i-1) < String.fromCharCode(20)){
+			output_ta.text += '\n\n';
+		}else{
+			if(rawtext.charAt(i) > String.fromCharCode(19)){
+				output_ta.text += rawtext.charAt(i);
+			}
+		}
+	if(i==rawtext.length-1){convert_btn.label = 'Convert Text';};
+	}
+}
+convert_btn.onPress = function(){
+	convert_btn.label = 'Working';
+	//_root.attachMovie("progress","progress_mc",10000,{_x:25,_y:127});
+	stripper();
+}
+reset_btn.onPress = function(){output_ta.text='';input_ti.text='';};

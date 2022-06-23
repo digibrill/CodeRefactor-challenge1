@@ -1,0 +1,311 @@
+i m p o r t   m x . c o n t r o l s . T e x t A r e a ; 
+ 
+ i m p o r t   m x . m a n a g e r s . D e p t h M a n a g e r ; 
+ 
+ i m p o r t   m x . c o n t a i n e r s . W i n d o w ; 
+ 
+ i m p o r t   m x . m a n a g e r s . P o p U p M a n a g e r ; 
+ 
+ i m p o r t   m x . c o n t r o l s . B u t t o n ; 
+ 
+ i m p o r t   m x . v i d e o . * ; 
+ 
+ v a r   c i t i e s : X M L   =   n e w   X M L ( ) ; 
+ 
+ c i t i e s . i g n o r e W h i t e   =   t r u e; 
+ 
+ v a r   c i t y N u m : N u m b e r ; 
+ 
+ v a r   c l o s e D u r a t i o n ; 
+ 
+ f u n c t i o n   c l e a r S c r e e n ( ) { 
+ 
+ 	 f o r ( v a r   k = 0 ; k < n u m O f C i t i e s ; k + + ) _ r o o t [ ' c i t y P o p O u t ' + k + ' _ m c ' ] . r e m o v e M o v i e C l i p ( ) ; 
+ 
+ } 
+ 
+ f u n c t i o n   p o s i t i o n A n d L o a d I m g ( p o p C l i p , i m g H o l d e r , i m g N a m e ) : M o v i e C l i p { 
+ 
+ 	 v a r   c l i p L o a d e r : M o v i e C l i p L o a d e r   =   n e w   M o v i e C l i p L o a d e r ( ) ; 
+ 
+ 	 v a r   c l i p L i s t e n e r : O b j e c t   =   { } ; 
+ 
+ 	 c l i p L i s t e n e r . o n L o a d C o m p l e t e   =   f u n c t i o n ( ) { 
+ 
+ 	 	 i m g H o l d e r . _ x   =   - 9 2 ; / / - ( p o p C l i p . _ w i d t h / 2 ) ; 
+ 
+ 	 	 i m g H o l d e r . _ y   =   - 5 2 ; / / - ( p o p C l i p . _ h e i g h t / 2 ) + 1 2 ; 
+ 
+ 	 	 i m g H o l d e r . _ a l p h a   =   0 ; 
+ 
+ 	 } 
+ 
+ 	 c l i p L o a d e r . a d d L i s t e n e r ( c l i p L i s t e n e r ) ; 
+ 
+ 	 c l i p L o a d e r . l o a d C l i p ( ' i m a g e s / '   +   i m g N a m e , i m g H o l d e r ) ; 
+ 
+ 	 r e t u r n   i m g H o l d e r ; 
+ 
+ } 
+ 
+ f u n c t i o n   l o a d T e x t ( t e x t B o x , c i t y T e x t , d e s c r i p T e x t ) { 
+ 
+ 	 t e x t B o x . t e x t   =   ' < b > '   +   c i t y T e x t   +   ' < / b > < b r > '   +   d e s c r i p T e x t ; 
+ 
+ } 
+ 
+ f u n c t i o n   b t n R o l l O u t ( b t n C l i p ) { 
+ 
+ 	 b t n C l i p . o n R o l l O u t   =   f u n c t i o n ( ) { 
+ 
+ 	 	 t h i s . g o t o A n d S t o p ( 1 ) ; 
+ 
+ 	 } 
+ 
+ } 
+ 
+ f u n c t i o n   s h o w P o p o u t ( p o p C l i p , i m g C h i l d , c i t y T e x t b o x , c i t y T e x t , d e s c r i p T e x t ) { 
+ 
+ 	 p o p C l i p . o n E n t e r F r a m e   =   f u n c t i o n ( ) { 
+ 
+ 	 	 i f ( t h i s . _ c u r r e n t f r a m e   = =   8 ) { 
+ 
+ 	 	 	 c i t y T e x t b o x . _ a l p h a   =   1 0 0 ; 
+ 
+ 	 	 	 i m g C h i l d . _ a l p h a   =   1 0 0 ; 
+ 
+ 	 	 	 l o a d T e x t ( c i t y T e x t b o x , c i t y T e x t , d e s c r i p T e x t ) ; 
+ 
+ 	 	 	 d e l e t e   t h i s . o n E n t e r F r a m e ; 
+ 
+ 	 	 } 
+ 
+ 	 } 
+ 
+ 	 p o p C l i p . o n R o l l O u t   =   c l e a r S c r e e n ; 
+ 
+ } 
+ 
+ v a r   p h o t o A r r a y : A r r a y ; 
+ 
+ v a r   c u r r e n t W i n d o w : W i n d o w ; 
+ 
+ v a r   w i n : W i n d o w ; 
+ 
+ v a r   c u r r P h o t o : N u m b e r ; 
+ 
+ f u n c t i o n   c l i c k ( e v t O b j : O b j e c t ) : V o i d { 
+ 
+ 	 i f ( e v t O b j . t a r g e t . _ n a m e = = ' n e x t _ b t n ' ) { 
+ 
+ 	 	 i f ( c u r r P h o t o < p h o t o A r r a y . l e n g t h ) { 
+ 
+ 	 	 	 i f ( p h o t o A r r a y [ c u r r P h o t o + 1 ] . i n d e x O f ( ' * ' )   >   - 1 ) { 
+ 
+ 	 	 	 	 w i n . c o n t e n t P a t h   =   ' i m a g e s / ' + ( p h o t o A r r a y [ c u r r P h o t o + 1 ] . s u b s t r i n g ( 0 , p h o t o A r r a y [ c u r r P h o t o + 1 ] . l e n g t h - 1 ) ) ; 
+ 
+ 	 	 	 	 w i n . c o n t e n t . _ x   =   6 8 ; 
+ 
+ 	 	 	 } e l s e   i f ( p h o t o A r r a y [ c u r r P h o t o + 1 ] . i n d e x O f ( ' @ ' )   >   - 1 ) { 
+ 
+ 	 	 	 	 w i n . c o n t e n t P a t h   =   ' F L V P l a y b a c k ' ; 
+ 
+ 	 	 	 	 w i n . c o n t e n t . s k i n A u t o H i d e   =   f a l s e ; 
+ 
+ 	 	 	 	 w i n . c o n t e n t . s k i n   =   ' M o j a v e E x t e r n a l A l l . s w f ' ; 
+ 
+ 	 	 	 	 w i n . c o n t e n t . c o n t e n t P a t h   =   ' v i d e o / ' + p h o t o A r r a y [ c u r r P h o t o + 1 ] . s u b s t r i n g ( 0 , p h o t o A r r a y [ c u r r P h o t o + 1 ] . l e n g t h - 1 ) ; 
+ 
+ 	 	 	 	 w i n . c o n t e n t . _ x   =   5 0 ; 
+ 
+ 	 	 	 } e l s e { 
+ 
+ 	 	 	 	 w i n . c o n t e n t P a t h   =   ' i m a g e s / ' + p h o t o A r r a y [ c u r r P h o t o + 1 ] ; 
+ 
+ 	 	 	 	 w i n . c o n t e n t . _ y   =   6 0 ; 
+ 
+ 	 	 	 } 
+ 
+ 	 	 	 c u r r P h o t o + + ; 
+ 
+ 	 	 	 i f ( c u r r P h o t o = = p h o t o A r r a y . l e n g t h - 1 ) d e s t r o y O b j e c t ( ' n e x t b t n ' ) ; 
+ 
+ 	 	 } 
+ 
+ 	 } e l s e { 
+ 
+ 	 	 c u r r e n t W i n d o w   =   W i n d o w ( e v t O b j . t a r g e t ) ; 
+ 
+         	 c u r r e n t W i n d o w . d e l e t e P o p U p ( ) ; 
+ 
+ 	 } 
+ 
+ } 
+ 
+ f u n c t i o n   o p e n W i n ( w i n N u m , p o p C l i p ) { 
+ 
+ 	 v a r   d y n T i t l e   =   " F   J   R o a d t r i p   D a y   "   +   c i t i e s . f i r s t C h i l d . c h i l d N o d e s [ w i n N u m ] . c h i l d N o d e s [ 0 ] . f i r s t C h i l d . n o d e V a l u e . s u b s t r i n g ( 4 , c i t i e s . f i r s t C h i l d . c h i l d N o d e s [ w i n N u m ] . c h i l d N o d e s [ 0 ] . f i r s t C h i l d . n o d e V a l u e . i n d e x O f ( ' - ' ) - 1 )   +   "   P h o t o   G a l l e r y " ; 
+ 
+ 	 p h o t o A r r a y   =   c i t i e s . f i r s t C h i l d . c h i l d N o d e s [ w i n N u m ] . c h i l d N o d e s [ 3 ] . f i r s t C h i l d . n o d e V a l u e . s p l i t ( ' , ' ) ; 
+ 
+ 	 i f ( p h o t o A r r a y . l e n g t h ! = u n d e f i n e d ) { 
+ 
+ 	 	 p o p C l i p . o n R e l e a s e   =   f u n c t i o n ( ) { 
+ 
+ 	 	 	 c u r r P h o t o   =   0 ; 
+ 
+ 	 	 	 i f ( p h o t o A r r a y [ 0 ] . i n d e x O f ( ' * ' )   >   - 1 ) { 
+ 
+ 	 	 	 	 v a r   d a y C o n t e n t   =   ' i m a g e s / '   +   p h o t o A r r a y [ 0 ] . s u b s t r i n g ( 0 , p h o t o A r r a y [ 0 ] . l e n g t h - 1 ) ; 
+ 
+ 	 	 	 	 v a r   c o n t e n t x   =   6 8 ; 
+ 
+ 	 	 	 	 v a r   c o n t e n t y   =   0 ; 
+ 
+ 	 	 	 } e l s e   i f ( p h o t o A r r a y [ 0 ] . i n d e x O f ( ' @ ' )   >   - 1 ) { 
+ 
+ 	 	 	 	 v a r   d a y C o n t e n t   =   ' F L V P l a y b a c k ' ; 
+ 
+ 	 	 	 	 v a r   c o n t e n t x   =   0 ; 
+ 
+ 	 	 	 	 v a r   c o n t e n t y   =   2 0 ; 
+ 
+ 	 	 	 } e l s e { 
+ 
+ 	 	 	 	 v a r   d a y C o n t e n t   =   ' i m a g e s / '   +   p h o t o A r r a y [ 0 ] ; 
+ 
+ 	 	 	 	 v a r   c o n t e n t x   =   0 ; 
+ 
+ 	 	 	 	 v a r   c o n t e n t y   =   6 0 ; 
+ 
+ 	 	 	 } 
+ 
+ 	 	 	 w i n   =   W i n d o w ( P o p U p M a n a g e r . c r e a t e P o p U p ( _ r o o t , W i n d o w , t r u e , { _ x : 0 , _ y : 0 , _ w i d t h : 4 2 5 , _ h e i g h t : 4 3 5 , c l o s e B u t t o n : t r u e , t i t l e : d y n T i t l e , c o n t e n t P a t h : d a y C o n t e n t } ) ) ; 
+ 
+ 	 	 	 v a r   c o n t e n t L o a d   =   n e w   O b j e c t ( ) ; 
+ 
+ 	 	 	 c o n t e n t L o a d . c o m p l e t e   =   f u n c t i o n ( ) { 
+ 
+ 	 	 	 	 i f ( c u r r P h o t o = = 0 ) { 
+ 
+ 	 	 	 	 	 w i n . c o n t e n t . _ x   =   c o n t e n t x ; 
+ 
+ 	 	 	 	 	 w i n . c o n t e n t . _ y   =   c o n t e n t y ; 
+ 
+ 	 	 	 	 } 
+ 
+ 	 	 	 	 i f ( p h o t o A r r a y [ 0 ] . i n d e x O f ( ' @ ' )   >   - 1 ) { 
+ 
+ 	 	 	 	 	 w i n . c o n t e n t . s k i n A u t o H i d e   =   f a l s e ; 
+ 
+ 	 	 	 	 	 w i n . c o n t e n t . s k i n   =   ' M o j a v e E x t e r n a l A l l . s w f ' ; 
+ 
+ 	 	 	 	 	 w i n . c o n t e n t . c o n t e n t P a t h   =   ' v i d e o / '   +   p h o t o A r r a y [ 0 ] . s u b s t r i n g ( 0 , p h o t o A r r a y [ 0 ] . l e n g t h - 1 ) ; 
+ 
+ 	 	 	 	 } 
+ 
+ 	 	 	 } 
+ 
+ 	 	 	 w i n . a d d E v e n t L i s t e n e r ( " c o m p l e t e " , c o n t e n t L o a d ) ; 
+ 
+ 	 	 	 w i n . s e t S t y l e ( ' b a c k g r o u n d C o l o r ' , 0 x 9 9 0 0 0 0 ) ; 
+ 
+ 	 	 	 i f ( p h o t o A r r a y . l e n g t h > 1 ) { 
+ 
+ 	 	 	 	 n e x t b t n   =   w i n . c r e a t e C l a s s O b j e c t ( B u t t o n , " n e x t _ b t n " , D e p t h M a n a g e r . k T o p m o s t , { l a b e l : " n e x t " , _ x : 3 5 0 , _ y : 2 9 0 , _ w i d t h : 7 0 , _ h e i g h t : 2 2 } ) ; 
+ 
+ 	 	 	 	 n e x t b t n . a d d E v e n t L i s t e n e r ( " c l i c k " , _ r o o t ) ; 
+ 
+ 	 	 	 } 
+ 
+ 	 	 	 w i n . a d d E v e n t L i s t e n e r ( " c l i c k " , _ r o o t ) ; 
+ 
+ 	 	 } 
+ 
+ 	 } 
+ 
+ } 
+ 
+ f u n c t i o n   c r e a t e P o p o u t ( p o p O u t N u m , i m g N a m e , c i t y N a m e , c i t y T e x t ) { 
+ 
+ 	 i f ( p o p O u t N u m   >   2 5 ) _ r o o t . a t t a c h M o v i e ( ' t b a 2 ' , ' c i t y P o p O u t ' + p o p O u t N u m + ' _ m c ' , p o p O u t N u m * 1 0 0 , { _ x : _ r o o t [ ' c i t y ' + p o p O u t N u m + ' _ m c ' ] . _ x - 1 0 5 , _ y : _ r o o t [ ' c i t y ' + p o p O u t N u m + ' _ m c ' ] . _ y - 5 5 } ) ; 
+ 
+ 	 e l s e   _ r o o t . a t t a c h M o v i e ( ' t b a ' , ' c i t y P o p O u t ' + p o p O u t N u m + ' _ m c ' , p o p O u t N u m * 1 0 0 , { _ x : _ r o o t [ ' c i t y ' + p o p O u t N u m + ' _ m c ' ] . _ x + 9 9 , _ y : _ r o o t [ ' c i t y ' + p o p O u t N u m + ' _ m c ' ] . _ y - 5 5 } ) ; 
+ 
+ 	 v a r   p o p C l i p   =   _ r o o t [ ' c i t y P o p O u t ' + p o p O u t N u m + ' _ m c ' ] ; 
+ 
+ 	 v a r   i m g H o l d e r   =   p o p C l i p . c r e a t e E m p t y M o v i e C l i p ( ' m y C l i p ' + p o p O u t N u m + ' _ m c ' , t h i s . g e t N e x t H i g h e s t D e p t h ( ) ) ; 
+ 
+ 	 v a r   i m g C h i l d   =   p o s i t i o n A n d L o a d I m g ( p o p C l i p , i m g H o l d e r , i m g N a m e ) ; 
+ 
+ 	 o p e n W i n ( p o p O u t N u m , p o p C l i p ) ; 
+ 
+         v a r   c i t y T e x t b o x   =   _ r o o t [ ' c i t y P o p O u t ' + p o p O u t N u m + ' _ m c ' ] . c r e a t e C l a s s O b j e c t ( T e x t A r e a , ' c i t y ' + p o p O u t N u m + ' _ t a ' , D e p t h M a n a g e r . k T o p + 1 0 , { _ x : - 1 1 , _ y : - 5 3 , _ w i d t h : 9 8 , _ h e i g h t : 1 0 5 } ) ; 
+ 
+ 	 w i t h ( c i t y T e x t b o x ) { 
+ 
+ 	 	 h t m l   =   t r u e ; 
+ 
+ 	 	 s e l e c t a b l e   =   t r u e ; 
+ 
+ 	 	 _ a l p h a   =   0 ; 
+ 
+ 	 	 w o r d W r a p   =   t r u e ; 
+ 
+ 	 	 s e t S t y l e ( " b o r d e r S t y l e " , " s o l i d " ) ; 
+ 
+ 	 	 v S c r o l l P o l i c y   =   ' o f f ' ; 
+ 
+ 	 	 h S c r o l l P o l i c y   =   ' o f f ' ; 
+ 
+         	 s e t S t y l e ( " b o r d e r C o l o r " , 0 x F F F F F F ) ; 
+ 
+                 s e t S t y l e ( " b o r d e r C a p C o l o r " , 0 x F F F F F F ) ; 
+ 
+ 	         s e t S t y l e ( " h i g h l i g h t C o l o r " , 0 x F F F F F F ) ; 
+ 
+         	 s e t S t y l e ( " s h a d o w C o l o r " , 0 x F F F F F F ) ; 
+ 
+                 s e t S t y l e ( " s h a d o w C a p C o l o r " , 0 x F F F F F F ) ; 
+ 
+         	 s e t S t y l e ( " t h e m e C o l o r " , 0 x F F F F F F ) ; 
+ 
+ 	 } 
+ 
+ 	 s h o w P o p o u t ( _ r o o t [ ' c i t y P o p O u t ' + p o p O u t N u m + ' _ m c ' ] , i m g C h i l d , c i t y T e x t b o x , c i t y N a m e , c i t y T e x t ) ; 
+ 
+ } 
+ 
+ f u n c t i o n   b t n R o l l O v e r ( b t n C l i p , b t n N u m , i m g N a m e , c i t y N a m e , c i t y T e x t ) { 
+ 
+ 	 b t n C l i p . o n R o l l O v e r   =   f u n c t i o n ( ) { 
+ 
+ 	 	 t h i s . g o t o A n d S t o p ( 2 ) ; 
+ 
+ 	 	 c l e a r S c r e e n ( ) ; 
+ 
+ 	 	 c r e a t e P o p o u t ( b t n N u m , i m g N a m e , c i t y N a m e , c i t y T e x t ) ; 
+ 
+ 	 } 
+ 
+ } 
+ 
+ 
+ 
+ c i t i e s . o n L o a d   =   f u n c t i o n ( ) { 
+ 
+ 	 n u m O f C i t i e s   =   c i t i e s . f i r s t C h i l d . c h i l d N o d e s . l e n g t h ; 
+ 
+ 	 f o r ( v a r   i = 0 ; i < n u m O f C i t i e s ; i + + ) { 
+ 
+ 	 	 v a r   b t n C l i p   =   _ r o o t [ ' c i t y ' + i + ' _ m c ' ] ; 
+ 
+ 	 	 b t n R o l l O v e r ( b t n C l i p , i , c i t i e s . f i r s t C h i l d . c h i l d N o d e s [ i ] . c h i l d N o d e s [ 2 ] . f i r s t C h i l d . n o d e V a l u e , c i t i e s . f i r s t C h i l d . c h i l d N o d e s [ i ] . c h i l d N o d e s [ 0 ] . f i r s t C h i l d . n o d e V a l u e , c i t i e s . f i r s t C h i l d . c h i l d N o d e s [ i ] . c h i l d N o d e s [ 1 ] . f i r s t C h i l d . n o d e V a l u e ) ; 
+ 
+ 	 	 b t n R o l l O u t ( b t n C l i p ) ; 
+ 
+ 	 } 
+ 
+ } 
+ 
+ c i t i e s . l o a d ( ' c i t i e s . x m l ' ) ;

@@ -150,8 +150,10 @@ header {
     margin: -20px auto 30px;
     padding: 5px 7px 5px 7px;
     text-align: center;
-    display: none;
+    /*display: none;*/
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .portfoliosection h4 {
@@ -167,20 +169,38 @@ header {
 .portfoliosection h5 {
     font-size: 11pt;
     color: var(--accentColor);
-    text-align: left;
+    clear: both;
+    margin: 20px 0 15px;
+    width: 100%;
+}
+
+.portfoliosection p {
+    font-size: 11pt;
+    color: var(--white);
+    clear: both;
+    margin: 20px 0 15px;
+    width: 100%;
 }
 
 .portfoliosection a {
     color: var(--white);
 }
 
-.portfoliosection img {
-    /*margin-right:10px;
-    margin-top:10px;
-    vertical-align:top;*/
-    flex-shrink: 1;
-    flex-basis: auto;
+.portfoliosection img{
+    clear:both;
+    margin: 0 5px 20px;
+}
+
+.portfoliosection img.wide {
+    width:100%;
+    height:auto;
     max-width: 1000px;
+}
+
+.portfoliosection img.narrow {
+    width:100%;
+    height:auto;
+    max-width: 500px;
 }
 
 /* Contact Me stripe */
