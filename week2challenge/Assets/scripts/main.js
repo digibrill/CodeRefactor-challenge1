@@ -20,6 +20,8 @@ document.addEventListener( 'DOMContentLoaded', () =>{
 
                 h4.nextElementSibling.style.display = 'none';
 
+                document.getElementById('work').scrollIntoView();
+
             }else{
 
                 let divs = document.querySelectorAll('div.portfoliosection');
@@ -31,6 +33,8 @@ document.addEventListener( 'DOMContentLoaded', () =>{
                 }
 
                 h4.nextElementSibling.style.display = 'flex';
+                
+                document.getElementById('work').scrollIntoView();
                 
             }
 
