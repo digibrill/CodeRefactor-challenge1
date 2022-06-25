@@ -24,7 +24,6 @@ header {
     width: 100%;
     background-color: var(--darkGrey);
     display: flex;
-    position: fixed;
     flex-wrap: nowrap;
     margin: 0 auto;
 }

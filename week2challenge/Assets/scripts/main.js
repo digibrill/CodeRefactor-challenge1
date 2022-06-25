@@ -1,3 +1,5 @@
+'use strict';
+
 /*var refreshes = parseInt(sessionStorage.getItem('refreshes'), 10) || 0;
 $('.counter h2').text('Refreshed ' + refreshes + ' time(s)');
 
@@ -34,3 +36,5 @@ document.addEventListener( 'DOMContentLoaded', () =>{
     })
 
 });
+
+document.getElementById('loading_section').style.display = 'flex';
