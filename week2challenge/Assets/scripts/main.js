@@ -7,6 +7,9 @@ $('button').click(function() {
     sessionStorage.setItem('refreshes', ++refreshes);
     window.location.reload();
 })*/
+
+// Open/close sections
+
 document.addEventListener( 'DOMContentLoaded', () =>{
 
     document.querySelectorAll('h4.clearg').forEach(h4 => {
@@ -36,5 +39,5 @@ document.addEventListener( 'DOMContentLoaded', () =>{
     })
 
 });
-
+//open current projects section on page load
 document.getElementById('loading_section').style.display = 'flex';
