@@ -273,7 +273,7 @@ footer p {
 
 @media screen and (max-width:768px) {
     .stripesheader {
-        display: none;
+        display: block;
     }
     .stripesbody {
         width: 100%;
