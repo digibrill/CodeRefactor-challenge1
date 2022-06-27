@@ -247,6 +247,7 @@ header {
 #bottomnav ul {
     float: right;
     margin-top: 30px;
+    text-align: center;
 }
 
 #bottomnav ul li {
@@ -263,12 +264,24 @@ header {
 footer {
     width:  100%;
     margin: var(--commonpx) auto 0;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content: center;
 }
 
 footer p {
     text-align: center;
     color:  var(--darkGrey);
+}
+
+@media screen and (max-width:768px) {
+    .stripesheader {
+        display: none;
+    }
+    .stripesbody {
+        width: 100%;
+        margin:0 10px 0;
+    }
+    #bottomnav ul {
+        float: none;
+        margin-top: 10px;
+        text-align: center;
+    }
 }
