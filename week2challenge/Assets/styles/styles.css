@@ -188,7 +188,10 @@ header {
 
 .portfoliosection img{
     clear:both;
-    margin: 0 5px 20px;
+    margin: 0 5px var(--commonpx);
+    width: 100%;
+    max-width: 410px;
+    height:auto;
 }
 
 .portfoliosection img.wide {
@@ -260,6 +263,9 @@ header {
 footer {
     width:  100%;
     margin: var(--commonpx) auto 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
 }
 
 footer p {
