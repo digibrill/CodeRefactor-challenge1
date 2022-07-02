@@ -9,9 +9,10 @@ The following image shows the web application's appearance and functionality:
 ## My links
 
 Link to my GitHub:
-https://digibrill.github.io/localEducRepo/
+https://github.com/digibrill/commentonsite-challenge1
 
 Link to GitHub Challenge #1 page:
-https://digibrill.github.io/localEducRepo/week1challenge/
+https://digibrill.github.io/commentonsite-challenge1/
+
 ---
 © 2022 An Unassociated Press Publication
